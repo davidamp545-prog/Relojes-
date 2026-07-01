@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consultoría de Relojes</title>
+
+<style>
+body{
+font-family: "Helvetica Neue", Arial, sans-serif;
+background:#0b0b0b;
+color:#eaeaea;
+margin:0;
+padding:40px 15px;
+}
+
+.container{
+max-width:720px;
+margin:auto;
+background:#151515;
+padding:35px;
+border-radius:16px;
+box-shadow:0 10px 40px rgba(0,0,0,0.6);
+}
+
+h1{
+text-align:center;
+font-weight:300;
+letter-spacing:1px;
+margin-bottom:10px;
+}
+
+p{
+text-align:center;
+color:#bdbdbd;
+font-size:15px;
+margin-bottom:20px;
+}
+
+/* Animated clock */
+.clock{
+width:90px;
+height:90px;
+border:3px solid #c9a24a;
+border-radius:50%;
+margin:20px auto;
+position:relative;
+}
+
+.hand{
+position:absolute;
+width:50%;
+height:2px;
+background:#c9a24a;
+top:50%;
+left:50%;
+transform-origin:0% 50%;
+animation:spin 4s linear infinite;
+}
+
+@keyframes spin{
+from{transform:rotate(0deg);}
+to{transform:rotate(360deg);}
+}
+
+label{
+display:block;
+margin-top:18px;
+font-size:14px;
+color:#d6d6d6;
+}
+
+input,select,textarea{
+width:100%;
+padding:14px;
+margin-top:6px;
+border:none;
+border-radius:10px;
+background:#1f1f1f;
+color:#fff;
+}
+
+textarea{min-height:90px;}
+
+button{
+margin-top:28px;
+width:100%;
+padding:16px;
+background:#b08d3c;
+border:none;
+border-radius:12px;
+cursor:pointer;
+font-size:16px;
+}
+
+button:hover{background:#c9a24a;}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+<h1>Consultoría de Relojes</h1>
+<p>Asesoramiento personalizado para encontrar tu reloj ideal.</p>
+
+<div class="clock">
+  <div class="hand"></div>
+</div>
+
+<form onsubmit="enviarCorreo(); return false;">
+<label>Nombre completo</label>
+<input id="nombre" required>
+
+<label>Teléfono</label>
+<input id="telefono" type="tel" required>
+
+<label>Presupuesto (€)</label>
+<input id="presupuesto" type="number" required>
+
+<label>Estilo</label>
+<select id="estilo">
+<option>Diver</option>
+<option>Elegante</option>
+<option>Militar</option>
+<option>Uso diario</option>
+</select>
+
+<label>Movimiento</label>
+<select id="movimiento">
+<option>Automático</option>
+<option>Mecánico</option>
+<option>Cuarzo</option>
+</select>
+
+<label>Tamaño muñeca</label>
+<select id="tamano">
+<option>Grande</option>
+<option>Mediano</option>
+<option>Pequeño</option>
+</select>
+
+<label>Comentarios</label>
+<textarea id="comentarios"></textarea>
+
+<button type="submit">Solicitar asesoramiento</button>
+</form>
+</div>
+
+<script>
+function enviarCorreo(){
+let nombre=document.getElementById("nombre").value;
+let telefono=document.getElementById("telefono").value;
+let presupuesto=document.getElementById("presupuesto").value + "€";
+let estilo=document.getElementById("estilo").value;
+let movimiento=document.getElementById("movimiento").value;
+let tamano=document.getElementById("tamano").value;
+let comentarios=document.getElementById("comentarios").value;
+
+let asunto="Nueva solicitud de consultoría de relojes";
+
+let cuerpo =
+`Nombre: ${nombre}
+Teléfono: ${telefono}
+
+Presupuesto: ${presupuesto}
+Estilo: ${estilo}
+Movimiento: ${movimiento}
+Tamaño: ${tamano}
+Comentarios: ${comentarios}`;
+
+window.location.href =
+"mailto:davidamp545@gmail.com?subject=" +
+encodeURIComponent(asunto) +
+"&body=" +
+encodeURIComponent(cuerpo);
+}
+</script>
+
+</body>
+</html>
